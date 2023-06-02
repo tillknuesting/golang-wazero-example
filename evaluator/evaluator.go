@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 type Flag struct {
@@ -12,6 +13,8 @@ type Flag struct {
 type Store struct {
 	Flags map[string]Flag `json:"flags"`
 }
+
+var counter = 0
 
 func main() {
 	state := "ENABLED"
@@ -23,5 +26,6 @@ func main() {
 
 	store.Flags["test"] = Flag{State: state}
 
-	fmt.Print(store.Flags["test"])
+	counter++
+	fmt.Print(store.Flags["test"].State + strconv.Itoa(counter))
 }

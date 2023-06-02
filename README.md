@@ -9,12 +9,10 @@ brew install wazero
 
 Build:
 ```bash
-cd evaluator; GOARCH=wasm GOOS=wasip1 gotip build -o evaluator.wasm evaluator.go
-go build
-
+cd evaluator; GOARCH=wasm GOOS=wasip1 gotip build -o evaluator.wasm evaluator.go; cd ..
 ```
 
 Run:
 ```bash
-wazero run main.wasm Kevin
+gotip run host.go
 ```
