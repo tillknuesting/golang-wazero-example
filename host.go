@@ -44,7 +44,8 @@ func run(r wazero.Runtime, ctx context.Context, config wazero.ModuleConfig) {
 	var buf bytes.Buffer
 
 	// InstantiateModule runs the "_start" function, WASI's "main".
-	if _, err := r.InstantiateWithConfig(ctx, evaluatorWasm, config.WithArgs("wasi", "testvalue").WithStdout(&buf)); err != nil {
+	if _, err := r.InstantiateWithConfig(ctx, evaluatorWasm, config.WithArgs("wasi",
+		"testvalue").WithStdout(&buf)); err != nil {
 		// Note: Most compilers do not exit the module after running "_start",
 		// unless there was an error. This allows you to call exported functions.
 		if exitErr, ok := err.(*sys.ExitError); ok && exitErr.ExitCode() != 0 {
