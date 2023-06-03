@@ -1,27 +1,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
 
-type Flag struct {
-	State string `json:"state"`
-}
-
-type Store struct {
-	Flags map[string]Flag `json:"flags"`
-}
-
 func main() {
-	state := "ENABLED"
+	scanner := bufio.NewScanner(os.Stdin)
+
+	scanner.Scan() // use for reading line from Stdin
+	input := scanner.Text()
+
+	fmt.Println("From Stdin: ", input)
+
+	state := "0"
 	if len(os.Args) > 1 {
 		state = os.Args[1]
 	}
 
-	store := Store{Flags: make(map[string]Flag)}
-
-	store.Flags["test"] = Flag{State: state}
-
-	fmt.Print(store.Flags["test"].State)
+	fmt.Println("From Args: ", state)
 }
